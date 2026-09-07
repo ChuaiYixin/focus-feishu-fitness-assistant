@@ -1,0 +1,2 @@
+@import "./extra.ttss";
+page{background:#f4f7f5;color:#102225;font-family:Arial,"PingFang SC",sans-serif}button::after{border:0}

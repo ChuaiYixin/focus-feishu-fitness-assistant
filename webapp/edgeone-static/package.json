@@ -1,0 +1,19 @@
+{
+  "name": "focus-coach-edgeone",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@musclemap/assets": "^1.0.1",
+    "@musclemap/core": "^1.0.1",
+    "@musclemap/react": "^1.0.1",
+    "@vitejs/plugin-react": "6.0.2",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "typescript": "5.9.3",
+    "vite": "8.0.13"
+  }
+}

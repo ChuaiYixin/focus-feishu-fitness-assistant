@@ -1,0 +1,13 @@
+node_modules/
+output/
+dist/
+.next/
+.vinext/
+.wrangler/
+.edgeone/
+.tef_dist/
+site-package-stage/
+*.tar.gz
+.env
+.env.*
+*.log

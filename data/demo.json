@@ -1,0 +1,15 @@
+{
+  "studentName": "王小明",
+  "courseDate": "2026-08-21",
+  "courseNumber": "第 12 节私教课",
+  "goal": "强化臀腿力量，改善深蹲动作稳定性",
+  "exercises": [
+    { "name": "杠铃深蹲", "sets": "4", "reps": "8 次", "weight": "60 kg" },
+    { "name": "罗马尼亚硬拉", "sets": "3", "reps": "10 次", "weight": "45 kg" },
+    { "name": "保加利亚分腿蹲", "sets": "3", "reps": "10/侧", "weight": "12 kg" },
+    { "name": "平板支撑", "sets": "3", "reps": "45 秒", "weight": "自重" }
+  ],
+  "summary": "今天深蹲节奏控制明显提升，核心稳定性较上节更好。后两组出现轻微膝内扣，下节继续加强单腿稳定训练。",
+  "nextPlan": "增加单腿训练；深蹲保持当前重量，优先提高动作质量。",
+  "coachName": "FOCUS 私教"
+}

@@ -1,0 +1,55 @@
+<view class="page">
+  <view class="hero"><view class="mark">F</view><view><view class="brand">FOCUS</view><view class="sub">私教训练助手</view></view></view>
+  <view class="tabs"><view class="tab {{tab==='edit'?'active':''}}" data-tab="edit" bindtap="switchTab">编辑训练总结</view><view class="tab {{tab==='preview'?'active':''}}" data-tab="preview" bindtap="switchTab">图片预览</view></view>
+
+  <view tt:if="{{tab==='edit'}}">
+    <view class="card">
+      <view class="section-title"><text>01</text><view><text class="title-main">基本信息</text><text class="title-sub">填写本节课程的有效信息</text></view></view>
+      <view class="field"><label>用户名</label><input value="{{course.student}}" data-key="student" bindinput="changeText"/></view>
+      <view class="field"><label>教练</label><input value="{{course.coach}}" data-key="coach" bindinput="changeText"/></view>
+      <view class="field"><label>训练日期与时间</label><view class="date-row"><picker mode="date" value="{{course.date}}" bindchange="changeDate"><view class="picker">{{course.date}}</view></picker><picker mode="time" value="{{course.time}}" bindchange="changeTime"><view class="picker">{{course.time}}</view></picker></view></view>
+      <view class="field"><label>本节目标</label><textarea value="{{course.goal}}" data-key="goal" bindinput="changeText" auto-height/></view>
+    </view>
+
+    <view class="card">
+      <view class="section-title"><text>02</text><view><text class="title-main">训练规划</text><text class="title-sub">点击日期切换：已上课 → 待上课 → 未按规划 → 空白</text></view></view>
+      <view class="calendar-title">{{calendarTitle}}</view><view class="week"><text tt:for="{{week}}" tt:key="*this">{{item}}</text></view>
+      <view class="days"><view tt:for="{{calendarCells}}" tt:key="index" class="day {{item.state}} {{item.empty?'empty':''}}" data-day="{{item.day}}" bindtap="cycleDay">{{item.day}}</view></view>
+      <view class="legend"><text class="done">● 已上课</text><text class="next">○ 待上课</text><text class="miss">● 未按规划</text></view>
+    </view>
+
+    <view class="card">
+      <view class="section-title"><text>03</text><view><text class="title-main">训练内容</text><text class="title-sub">最多六项</text></view></view>
+      <view class="exercise" tt:for="{{course.exercises}}" tt:key="index">
+        <input class="exercise-name" value="{{item.name}}" data-index="{{index}}" data-key="name" bindinput="changeExercise" placeholder="训练动作"/>
+        <input value="{{item.sets}}" data-index="{{index}}" data-key="sets" bindinput="changeExercise" placeholder="组"/><text>×</text>
+        <input value="{{item.reps}}" data-index="{{index}}" data-key="reps" bindinput="changeExercise" placeholder="次数"/>
+        <switch checked="{{item.completed}}" data-index="{{index}}" bindchange="toggleExercise" color="#b7db3f"/>
+      </view>
+      <button class="outline" bindtap="addExercise">＋ 添加训练动作</button>
+    </view>
+
+    <view class="card">
+      <view class="section-title"><text>04</text><view><text class="title-main">能力变化图</text><text class="title-sub">设置当前能力与本节预估增长</text></view></view>
+      <view class="ability" tt:for="{{axes}}" tt:key="name"><text class="ability-name">{{item.name}}</text><view><text>当前 {{item.current}}</text><slider min="10" max="100" value="{{item.current}}" data-index="{{index}}" data-kind="current" bindchange="changeRadar" activeColor="#b7db3f"/></view><view><text>增长 +{{item.growth}}</text><slider min="0" max="20" value="{{item.growth}}" data-index="{{index}}" data-kind="growth" bindchange="changeRadar" activeColor="#b7db3f"/></view></view>
+    </view>
+
+    <view class="card">
+      <view class="section-title"><text>05</text><view><text class="title-main">本节训练肌群</text><text class="title-sub">选择需要在人体图上高亮的肌肉</text></view></view>
+      <view class="muscles"><view tt:for="{{muscleOptions}}" tt:key="name" class="muscle {{item.selected?'selected':''}}" data-index="{{index}}" bindtap="toggleMuscle">{{item.name}}</view></view>
+    </view>
+
+    <view class="card">
+      <view class="section-title"><text>06</text><view><text class="title-main">教练反馈</text><text class="title-sub">总结表现并明确下节方向</text></view></view>
+      <view class="field"><label>教练总结</label><textarea value="{{course.summary}}" data-key="summary" bindinput="changeText" auto-height/></view>
+      <view class="field"><label>下节计划</label><textarea value="{{course.nextPlan}}" data-key="nextPlan" bindinput="changeText" auto-height/></view>
+    </view>
+    <view class="actions"><button class="outline" bindtap="saveDraft">保存草稿</button><button class="primary" bindtap="renderPoster">生成图片</button></view>
+  </view>
+
+  <view tt:else class="preview-wrap">
+    <canvas canvas-id="poster" id="poster" class="poster" style="width:540px;height:960px"></canvas>
+    <button class="primary save" bindtap="saveImage">保存图片到手机</button>
+    <view class="privacy">训练内容仅保存在当前设备。</view>
+  </view>
+</view>
