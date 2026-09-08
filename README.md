@@ -1,4 +1,22 @@
-# 飞书私教训练助手 Demo
+# FOCUS 私教训练助手
+
+当前生产入口为 `https://focus.umaoni.cn/`，通过飞书企业自建应用“FOCUS教练助手”打开。完整接管步骤见 [HANDOVER.md](HANDOVER.md)。
+
+## 当前网页应用
+
+```powershell
+cd webapp/edgeone-static
+npm ci
+npx vite --host 127.0.0.1
+```
+
+生产构建：
+
+```powershell
+npm run build
+```
+
+## 早期图片生成 Demo
 
 根据飞书多维表格课程记录生成 `1080 × 1440` PNG，并由飞书机器人发送给记录中的“接收人”。GitHub Actions 可按 `record_id` 触发；手动测试时留空会读取表格第一条记录。
 
